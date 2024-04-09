@@ -462,6 +462,9 @@
 //       alert("You have won " + winningSegment.text + "!");
 //   }
 
+
+console.log(Winwheel)
+
 let winsound = document.getElementById('winsound');
 console.log(winsound);
 
