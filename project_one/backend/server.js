@@ -3,8 +3,11 @@ const mongoose = require("mongoose");
 const segmentsRoutes = require("./routes/segmentRoute");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
+const playerRoutes = require("./routes/playerRoute");
 const app = express();
+require("dotenv").config();
+
+// dotenv
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -12,11 +15,11 @@ app.use(cookieParser());
 app.use(cors()); // Apply CORS middleware here
 
 // Database connection
-const dbURI =
-  "mongodb+srv://myAtlasDBUser:123456789johndoe@myatlasclusteredu.kmyoknr.mongodb.net/spin_demo_one?retryWrites=true&w=majority&appName=myAtlasClusterEDU";
+const dbURI = process.env.CONNECT_STRING;
 
 // Port
 const port = process.env.PORT;
+console.log(port);
 
 // Connect to MongoDB and start the server
 mongoose
@@ -29,4 +32,5 @@ mongoose
   .catch((err) => console.log(err));
 
 // Routes
-app.use("/api/segments", segmentsRoutes);
+app.use(segmentsRoutes);
+app.use(playerRoutes);

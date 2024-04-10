@@ -1,0 +1,72 @@
+/* body{
+    max-width: 1100px;
+    margin: 20px auto;
+    text-align: center;
+} */
+
+:root{
+    --main-grey: rgb(189, 188, 188);
+}
+
+html{
+    box-sizing: border-box;
+}
+
+*, ::before, ::after{
+    box-sizing: inherit;
+}
+
+body{
+    margin:0;
+    padding:0;
+}
+
+.containers, main{
+    max-width: 1100px;
+    margin: 4rem auto !important;
+}
+
+
+
+/* form */
+
+.containers main form{
+    width: 60%;
+    margin:0 auto;
+}
+
+.input-field input{
+   border: 1px solid var(--main-grey) !important;
+   border-radius: 8px !important;
+   margin-block: 10px !important;
+   padding:0px 12px !important;
+}
+
+.spin_wheel{
+    margin:100px 0;
+}
+
+
+/* .canvas-box{
+    width: 50%;
+    height: 50%;
+} */
+
+
+#canvasContainer {
+    position: relative;
+    width: 300px;
+}
+
+#canvas {
+    z-index: 1;
+}
+
+#prizePointer {
+    position: absolute;
+    left: 422px;
+    top: 10px;
+    margin:60px 0;
+
+    z-index: 999;
+}

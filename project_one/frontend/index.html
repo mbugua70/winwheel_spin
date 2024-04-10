@@ -1,25 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- winwheel libraly -->
-    <script src="./lib/javascript-winwheel/Winwheel.js"></script>
-   <!-- gsap libraly -->
-   <script src="./lib/gsap-public/minified/gsap.min.js"></script>
+     <!-- winwheel libraly -->
+     <script src="./lib/javascript-winwheel/Winwheel.js"></script>
+     <!-- gsap libraly -->
+     <script src="./lib/gsap-public/minified/gsap.min.js"></script>
 
-    <!-- script materialize css -->
-    <script src="./lib/materialize/js/materialize.js"></script>
+     <!-- css  -->
+     <link rel="stylesheet" href="./css/style.css">
 
+    <title>Spin</title>
+</head>
+<body>
+    <div class="spin_wheel">
+        <canvas id='canvas' width='880' height='300'>
+            Canvas not supported, use another browser.
+        </canvas>
+        <!-- <button onClick="changeColours();">Change Colours</button> -->
 
-    <!-- materialize css -->
-    <link rel="stylesheet" href="./lib/materialize/css/materialize.css">
-    <title>Spin The Wheel</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+        <!-- adding and removing segment button  -->
+        <!-- <button onClick="addSegment();">Add Segment</button> -->
+        <!-- <button onClick="deleteSegment();">Delete Segment</button> -->
+        <img id="prizePointer" src="./image/basic_pointer.png" alt="V" />
+        <audio id="winsound" controls>
+            <source src="./audio/audio_one.mp3" type="audio/mp3">
+          Your browser does not support the audio element.
+          </audio>
+        <button onClick="colourWheel.startAnimation();">Spin the Wheel</button>
+       </div>
+       <script src="./util/index.js"></script>
+</body>
 </html>

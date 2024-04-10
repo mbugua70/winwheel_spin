@@ -11,7 +11,7 @@ const segmentWheelSchema = new Schema(
       required: true,
     },
     text: {
-      type: Number,
+      type: String,
       required: true,
     },
     gift_number: {

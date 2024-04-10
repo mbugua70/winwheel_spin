@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./lib/materialize/js/materialize.js"></script>
+    <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" href="./lib/sweetalert2/src/sweetalert2.scss">
+    <!-- materialize css libraly -->
+    <link rel="stylesheet" href="./lib/materialize/css/materialize.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Spin Form</title>
+</head>
+<body>
+    <header></header>
+    <div class="containers">
+       <main>
+          <form class="lg3" id="form" action="/" method="post">
+           <div class="row">
+            <div class="input-field row  s6">
+                <label for="player_email">Email</label>
+                <input placeholder="Enter email" name="player_email" id="player_email" type="email" class="validate">
+              </div>
+            <div class="input-field row s6">
+                <label for="player_email">Phone</label>
+                <input placeholder="Enter phone number" name="player_phone" id="player_phone" type="tel" class="validate">
+              </div>
+
+                <button class="waves-effect waves-light btn-large">Button</button>
+
+           </div>
+          </form>
+       </main>
+    </div>
+    <script src="./lib/sweetalert/sweet.js"></script>
+    <script src="./util/form.js"></script>
+</body>
+</html>
