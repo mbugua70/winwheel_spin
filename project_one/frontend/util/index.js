@@ -1,33 +1,42 @@
 let winsound = document.getElementById("winsound");
-
+const wheelBuutonEl = document.getElementById("wheelBuuton");
 console.log(winsound);
 
-let colourWheel = new Winwheel({
-  numSegments: 8,
-  outerRadius: 140,
-  pointerAngle: 0, // Remember to specify if not default of 0 degrees.
-  segments: [
-    { fillStyle: "#eae56f", text: "Prize 1" },
-    { fillStyle: "#89f26e", text: "Prize 2" },
-    { fillStyle: "#7de6ef", text: "Prize 3" },
-    { fillStyle: "#e7706f", text: "Prize 4" },
-    { fillStyle: "#eae56f", text: "Prize 5" },
-    { fillStyle: "#89f26e", text: "Prize 6" },
-    { fillStyle: "#7de6ef", text: "Prize 7" },
-    { fillStyle: "#e7706f", text: "Prize 8" },
-  ],
-  animation: {
-    type: "spinToStop",
-    duration: 10,
-    spins: 8,
+const arraySegments = async () => {
+  const segments = await handleGetSegments();
+  // console.log(segments.data);
+  const items = segments.data.map((item) => ({
+    fillStyle: item.fillStyle,
+    text: item.text,
+  }));
 
-    // To do something after the animation has finished specify callback function.
-    callbackFinished: "winAnimation()",
+  // winwheel configuration
+  let colourWheel = new Winwheel({
+    numSegments: segments.data.length,
+    outerRadius: 170,
+    pointerAngle: 0, // Remember to specify if not default of 0 degrees.
+    segments: items,
+    animation: {
+      type: "spinToStop",
+      duration: 10,
+      spins: 8,
 
-    // During the animation need to call function to re-draw triangle.
-    callbackAfter: "playSound()",
-  },
-});
+      // To do something after the animation has finished specify callback function.
+      callbackFinished: "winAnimation()",
+
+      // During the animation need to call function to re-draw triangle.
+      callbackAfter: "playSound()",
+    },
+  });
+
+  wheelBuutonEl.addEventListener(
+    "click",
+    () => {
+      colourWheel.startAnimation();
+    },
+    false
+  );
+};
 
 // This function called after the spin animation has stopped.
 function winAnimation() {
@@ -52,3 +61,27 @@ const playSound = () => {
   console.log(winsound);
   winsound.play();
 };
+
+const handleGetSegments = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/api/segments", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (res.ok) {
+      const segments = await res.json();
+      console.log(segments);
+      return segments;
+    }
+  } catch (error) {
+    return null;
+  }
+};
+
+// update gift_number
+
+
+arraySegments();
