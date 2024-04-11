@@ -1,4 +1,18 @@
 const form = document.getElementById("form");
+const iconsError = document.getElementById("icons-error");
+
+window.addEventListener("load", () => {
+  const handleNetworkChange = () => {
+    if (navigator.onLine) {
+      iconsError.style.display = "none";
+    } else {
+      iconsError.style.display = "block";
+    }
+  };
+
+  window.addEventListener("online", handleNetworkChange);
+  window.addEventListener("offline", handleNetworkChange);
+});
 
 form.addEventListener(
   "submit",
