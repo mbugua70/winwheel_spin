@@ -34,3 +34,31 @@ module.exports.playerForm_post = async (req, res) => {
     res.status(400).json({ error });
   }
 };
+
+
+// updating the marchandize for player
+
+module.exports.player_gift_update = async (req, res) => {
+
+  try {
+    const paramsID = req.params.id;
+    const updatedValue = req.body;
+    if (!mongoose.Types.ObjectId.isValid(paramsText)) {
+      return res.status(404).json({ error: "No such player" });
+    }
+    const giftUpdated = await SegmentWheelModel.findByIdAndUpdate(
+      { paramsID },
+      updatedValue,
+      { new: true }
+    );
+
+    if (!giftUpdated) {
+      return res.status(404).json({ error: "No such player" });
+    }
+
+    res.status(204).json({ success: true, giftUpdated });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ error: err.message });
+  }
+};

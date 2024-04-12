@@ -7,6 +7,7 @@ module.exports.segmentWheel_get_all = async (req, res) => {
       {
         text: 1,
         fillStyle: 1,
+        gift_number: 1,
       }
     );
     if (segments.length === 0) {
@@ -29,7 +30,9 @@ module.exports.single_gift_segment = async (req, res) => {
     if (!SingleSegment) {
       return res.status(400).json({ error: "No such segment" });
     }
-    res.status(200).json({ success: true, SingleSegment });
+    res
+      .status(200)
+      .json({ success: true, gift_number: SingleSegment[0].gift_number });
   } catch (err) {
     console.log(err);
     res.status(400).json({ error: err.message });
