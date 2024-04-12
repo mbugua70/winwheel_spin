@@ -20,6 +20,22 @@ module.exports.segmentWheel_get_all = async (req, res) => {
   }
 };
 
+// getting single segment for gift_number
+module.exports.single_gift_segment = async (req, res) => {
+  try {
+    const paramsText = req.params.text;
+    const SingleSegment = await SegmentWheelModel.find({ text: paramsText });
+    // console.log(SingleWorkOut);
+    if (!SingleSegment) {
+      return res.status(400).json({ error: "No such segment" });
+    }
+    res.status(200).json({ success: true, SingleSegment });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ error: err.message });
+  }
+};
+
 // getting a single segment based on text field
 
 module.exports.single_get_segment = async (req, res) => {
@@ -48,7 +64,7 @@ module.exports.segment_update = async (req, res) => {
     // if (!mongoose.Types.ObjectId.isValid(paramsText)) {
     //   return res.status(404).json({ error: "No such workout" });
     // }
-    const updatedSegment = await WorkOutModel.findAndUpdate(
+    const updatedSegment = await SegmentWheelModel.findOneAndUpdate(
       { text: paramsText },
       updatedValue,
       { new: true }
