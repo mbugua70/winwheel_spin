@@ -1,4 +1,5 @@
 const PlayerModel = require("../models/players");
+const mongoose = require("mongoose");
 
 const handleErrors = (err) => {
   console.log(err.message, err.code);
@@ -35,19 +36,17 @@ module.exports.playerForm_post = async (req, res) => {
   }
 };
 
-
 // updating the marchandize for player
 
 module.exports.player_gift_update = async (req, res) => {
-
   try {
     const paramsID = req.params.id;
     const updatedValue = req.body;
-    if (!mongoose.Types.ObjectId.isValid(paramsText)) {
+    if (!mongoose.Types.ObjectId.isValid(paramsID)) {
       return res.status(404).json({ error: "No such player" });
     }
-    const giftUpdated = await SegmentWheelModel.findByIdAndUpdate(
-      { paramsID },
+    const giftUpdated = await PlayerModel.findByIdAndUpdate(
+       paramsID ,
       updatedValue,
       { new: true }
     );

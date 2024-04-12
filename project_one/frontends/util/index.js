@@ -58,6 +58,9 @@ const arraySegments = async () => {
 
       callbackFinished: handleGiftNumber,
 
+      // refresh page
+      // callbackFinished: refreshPage,
+
       // During the animation need to call function to re-draw triangle.
       callbackAfter: playSound,
     },
@@ -120,6 +123,7 @@ const handlePlayerUpdate = async (userID, text) => {
 
     if (res.ok || res.status === 204) {
       console.log("player marchandize  updated successfully");
+      prizeAlert();
     } else {
       console.error("Failed to update player marchandize");
     }
@@ -127,12 +131,14 @@ const handlePlayerUpdate = async (userID, text) => {
 };
 
 // userID
-const userID = getURLParams();
+const userID = getURLParams("userID");
+console.log(userID);
 
 // update gift_number
 const handleGiftNumber = async () => {
   winningSegment = colourWheel.getIndicatedSegment();
   let text = winningSegment.text;
+  console.log(text);
   await findGiftNumber(text);
   handlePlayerUpdate(userID, text);
   const updatedValue = {
@@ -155,5 +161,36 @@ const handleGiftNumber = async () => {
     }
   } catch (err) {}
 };
+
+const prizeAlert = () => {
+  winningSegment = colourWheel.getIndicatedSegment();
+  let text = winningSegment.text;
+  workingNotifier(`You have won ${text}`);
+  setTimeout(() => {
+    window.location.href = "../index.html";
+  }, 12000);
+};
+
+// const refreshPage = () => {
+
+// };
+
+// swal libraly
+const workingNotifier = (message) => {
+  swal({
+    title: message,
+    text: "",
+    icon: "success",
+  });
+};
+
+//   swal libraly
+function appNotifier(message) {
+  swal({
+    title: message,
+    text: "",
+    icon: "warning",
+  });
+}
 
 arraySegments();

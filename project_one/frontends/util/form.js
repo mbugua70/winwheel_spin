@@ -1,17 +1,9 @@
 // dom api
 const form = document.getElementById("form");
 const iconsError = document.getElementById("icons-error");
+const btnEl = document.getElementById("dynamic_btn");
 
-const handleNetworkChange = () => {
-  if (navigator.onLine) {
-    iconsError.style.display = "none";
-  } else {
-    iconsError.style.display = "block";
-  }
-};
-
-window.addEventListener("online", handleNetworkChange);
-window.addEventListener("offline", handleNetworkChange);
+let isSubmitting = false;
 
 form.addEventListener(
   "submit",
@@ -34,8 +26,7 @@ form.addEventListener(
         player_marchandize: formData_one.get("player_marchandize"),
       };
 
-      const dataID = await handleSubmit(playerData);
-      console.log(dataID);
+      await handleSubmit(playerData);
     }
 
     // inputs.forEach((input) => {
@@ -50,6 +41,7 @@ form.addEventListener(
 const handleSubmit = async (data) => {
   console.log(data);
   try {
+    isSubmitting = true;
     const res = await fetch("http://localhost:3000/api/player", {
       method: "POST",
       headers: {
@@ -59,11 +51,14 @@ const handleSubmit = async (data) => {
     });
 
     const dataID = await res.json();
+    console.log(dataID);
 
     if (res.ok) {
+      isSubmitting = true;
       workingNotifier("Your details are successfully submitted!");
-      window.location.href = `/spin/?userID=${dataID}`;
-      return dataID;
+      setTimeout(() => {
+        window.location.href = `/spin.html?userID=${dataID.id}`;
+      }, 3000);
     }
 
     if (!res.ok) {
@@ -75,6 +70,9 @@ const handleSubmit = async (data) => {
     return null;
   }
 };
+
+btnEl.textContent = !isSubmitting ? "Button" : "Submitting";
+
 
 // swal libraly
 const workingNotifier = (message) => {
