@@ -19,11 +19,22 @@ html{
 body{
     margin:0;
     padding:0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+
+}
+
+.containers{
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .containers, main{
     max-width: 1100px;
-    margin: 4rem auto !important;
+    margin: 0px auto !important;
 }
 
 
@@ -35,6 +46,7 @@ body{
     margin:0 auto;
 }
 
+
 .input-field input{
    border: 1px solid var(--main-grey) !important;
    border-radius: 8px !important;
@@ -42,33 +54,42 @@ body{
    padding:0px 12px !important;
 }
 
+
+.spin_section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .spin_wheel{
-    margin:100px 0;
+    /* padding: ; */
+    width: 700px;
+    height: 700px;
 }
 
 
-/* .canvas-box{
-    width: 50%;
-    height: 50%;
-} */
 
 
-#canvasContainer {
+
+/* #canvasContainer {
     position: relative;
     width: 300px;
-}
+} */
 
 #canvas {
+    position: relative;
     z-index: 1;
+    margin:0 auto !important;
 }
 
 #prizePointer {
     position: absolute;
-    left: 390px;
-    top: 70px;
-    margin:80px 0;
-    width: 100px;
-    height: 100px;
+    left: 46.6%;
+    transform: translateX(-50%);
+    top: 280px;
+    /* margin: 0; */
+    width: 72px;
+    height: 72px;
     z-index: 999;
 }
 
@@ -77,22 +98,28 @@ body{
     color: #fff;
 }
 
-.error{
+/* .error{
     text-align: center;
     width: 40%;
     margin: 20px auto;
-}
+} */
 
 .spin_button{
-    left:365px;
-    top: 430px;
+    left:46.7%;
+    transform: translateX(-50%);
+    top: 464px;
     position: absolute;
+    z-index: 999;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     border-style: none;
     color: #fff;
     background-color: red;
     font-size: 32px;
     font-weight: bold;
+}
+
+button.spin_button {
+    background-color: red;
 }

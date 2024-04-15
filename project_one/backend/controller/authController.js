@@ -5,6 +5,7 @@ module.exports.segmentWheel_get_all = async (req, res) => {
     const segments = await SegmentWheelModel.find(
       {},
       {
+        strokeStyle: 1,
         text: 1,
         fillStyle: 1,
         gift_number: 1,

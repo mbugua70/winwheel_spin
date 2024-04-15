@@ -18,6 +18,9 @@ const segmentWheelSchema = new Schema(
       type: Number,
       required: true,
     },
+    strokeStyle: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
