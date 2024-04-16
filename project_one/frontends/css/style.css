@@ -37,8 +37,6 @@ body{
     margin: 0px auto !important;
 }
 
-
-
 /* form */
 
 .containers main form{
@@ -48,7 +46,7 @@ body{
 
 
 .input-field input{
-   border: 1px solid var(--main-grey) !important;
+   border: 1px solid #1ea62c !important;
    border-radius: 8px !important;
    margin-block: 10px !important;
    padding:0px 12px !important;
@@ -115,11 +113,143 @@ body{
     height: 130px;
     border-style: none;
     color: #fff;
-    background-color: red;
+    background-color:#1ea62c;
     font-size: 32px;
     font-weight: bold;
 }
 
 button.spin_button {
-    background-color: red;
+    background-color: #1ea62c;
+}
+
+
+/* big interactive screen */
+@media ((min-width: 2160px) and (min-height: 3840px)){
+    .form_section{
+        height: 230px;
+    }
+  .containers{
+    width: 2000px !important;
+    margin-top: 16rem !important;
+  }
+
+  .containers, main{
+    max-width: 2000px !important;
+  }
+
+  .containers main{
+    height: 100%;
+  }
+
+
+  /* spin the wheel media query */
+  .spin_wheel{
+    margin-top: 24rem !important;
+    width: 2000px;
+    height: 2000px;
+  }
+
+  canvas {
+    width: 2000px !important;
+    height: 2000px !important;
+  }
+
+  .spin_button{
+    left: 50%;
+    top: 1600px;
+    width: 460px;
+    height: 460px;
+  }
+
+  #prizePointer{
+  left: 50%;
+  top: 880px;
+  width: 230px;
+  height: 230px;
+  }
+
+  /* form stlying media query */
+  .input-field  label{
+    font-size: 80px;
+
+  }
+
+  .input-field input{
+    margin-block: 25px !important;
+    padding: 60px 18px !important;
+    border: 10px solid #1ea62c !important;
+    text-align: center;
+    font-size: 80px !important;
+    text-transform: uppercase;
+    font-weight: 500;
+
+  }
+
+  .containers main form{
+    height: 100%;
+    width: 80%;
+  }
+}
+
+/* small interactive screen */
+@media ((max-width: 1080px) and (max-height: 1920px)) {
+.form_section{
+        height: 230px;
+    }
+  .containers{
+    margin-top: 10rem !important;
+  }
+
+  .containers main{
+    height: 100%;
+  }
+
+
+  /* spin the wheel media query */
+  .spin_wheel{
+    margin-top: 5rem !important;
+    width: 1000px;
+    height: 1000px;
+  }
+
+  canvas {
+    width: 1000px !important;
+    height: 1000px !important
+  }
+
+  .spin_button{
+    left: 50%;
+    top: 832px;
+    width: 230px;
+    height: 230px;
+  }
+
+  #prizePointer{
+  left: 50%;
+  top: 490px;
+  width: 100px;
+  height: 100px;
+  }
+
+  /* form stlying media query */
+  .input-field  label{
+    font-size: 30px;
+
+  }
+
+  .input-field input{
+    margin-block: 18px !important;
+    padding: 25px 18px !important;
+    border: 5px solid #1ea62c !important;
+    text-align: center;
+    font-size: 52px !important;
+
+  }
+
+  .containers main form{
+    height: 100%;
+    width: 70%;
+  }
+
+
 }

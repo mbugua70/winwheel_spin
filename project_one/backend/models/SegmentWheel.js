@@ -21,6 +21,9 @@ const segmentWheelSchema = new Schema(
     strokeStyle: {
       type: String,
     },
+    textFillStyle: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

@@ -81,16 +81,17 @@ const arraySegments = async () => {
       fillStyle: item.fillStyle,
       text: item.text,
       strokeStyle: item.strokeStyle,
+      textFillStyle: item.textFillStyle,
     }));
   console.log(items);
 
   // winwheel configuration
   colourWheel = new Winwheel({
     numSegments: items.length,
-    outerRadius: 210,
+    outerRadius: 240,
     innerRadius: 75,
     textAlignment: "center",
-    textFontSize: 14,
+    textFontSize: 16,
     lineWidth: 6,
     pointerAngle: 0, // Remember to specify if not default of 0 degrees.
     responsive: true,
@@ -235,6 +236,9 @@ const prizeAlert = () => {
   winningSegment = colourWheel.getIndicatedSegment();
   let text = winningSegment.text;
   workingNotifier(`You have won ${text}`);
+  setTimeout(() => {
+    window.location.reload();
+  }, 3000);
 };
 
 // swal libraly

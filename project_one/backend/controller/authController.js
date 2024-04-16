@@ -9,6 +9,7 @@ module.exports.segmentWheel_get_all = async (req, res) => {
         text: 1,
         fillStyle: 1,
         gift_number: 1,
+        textFillStyle: 1,
       }
     );
     if (segments.length === 0) {
