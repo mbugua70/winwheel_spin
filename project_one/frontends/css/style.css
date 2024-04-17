@@ -23,6 +23,11 @@ body{
     height: 100vh;
     height: 100dvh;
     overflow: hidden;
+    background-image: url("../public/image/imgeone.jpg");
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-position: left top;
+    background-size: contain;
 
 }
 
@@ -123,8 +128,38 @@ button.spin_button {
 }
 
 
+
+
 /* big interactive screen */
 @media ((min-width: 2160px) and (min-height: 3840px)){
+
+   /* sweet alert modal */
+   .swal-modal{
+    width: 1200px !important;
+    height: 500px !important;
+  }
+
+  .swal-button{
+    padding: 28px 48px;
+    font-size: 24px;
+  }
+
+  .swal-icon{
+    width: 120px;
+    height: 120px;
+  }
+
+  .swal-title{
+   font-size: 48px;
+  }
+
+  body{
+    background-image: url("../public/image/imagetwo.jpg");
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-position: left top;
+    background-size: contain;
+  }
     .form_section{
         height: 230px;
     }
@@ -159,6 +194,8 @@ button.spin_button {
     top: 1600px;
     width: 460px;
     height: 460px;
+    border:1px solid #1ea62c !important;
+
   }
 
   #prizePointer{
@@ -180,19 +217,37 @@ button.spin_button {
     border: 10px solid #1ea62c !important;
     text-align: center;
     font-size: 80px !important;
-    text-transform: uppercase;
     font-weight: 500;
-
+    color: #fff;
   }
 
   .containers main form{
     height: 100%;
     width: 80%;
   }
+
+  ::placeholder{
+    text-transform: uppercase;
+
+  }
+
+  /* sweetAlert modal  */
+
 }
 
 /* small interactive screen */
 @media ((max-width: 1080px) and (max-height: 1920px)) {
+  /* sweet alert modal */
+  .swal-modal{
+    width: 600px !important;
+    height: 300px !important;
+  }
+
+  .swal-button{
+    padding: 16px 28px;
+    font-size: 18px;
+  }
+
 .form_section{
         height: 230px;
     }
@@ -243,7 +298,13 @@ button.spin_button {
     border: 5px solid #1ea62c !important;
     text-align: center;
     font-size: 52px !important;
+    text-transform: uppercase;
+    font-weight: 500;
 
+  }
+
+  ::placeholder{
+    color: #1ea62c !important;
   }
 
   .containers main form{

@@ -31,6 +31,9 @@ const handleSubmit = async (data) => {
 
     const dataID = await res.json();
     console.log(dataID);
+    if(dataID.error){
+      appNotifier(dataID.error.player_email)
+    }
 
     if (res.ok) {
       console.log("Formdata submitted successfully");
@@ -42,7 +45,7 @@ const handleSubmit = async (data) => {
       return null;
     }
   } catch (error) {
-    console.log("Fetch error", error);
+    console.log("Fetch error", error.message);
 
     console.log("failed to submit");
     return null;

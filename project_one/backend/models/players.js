@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { isEmail } = require("validator");
 
 const Schema = mongoose.Schema;
 
@@ -8,6 +9,8 @@ const playerSchema = new Schema(
   {
     player_email: {
       type: String,
+      unique: true,
+      validate: [isEmail, "Please enter a valid email"],
       required: true,
     },
     player_phone: {
