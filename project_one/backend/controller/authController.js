@@ -30,7 +30,7 @@ module.exports.single_gift_segment = async (req, res) => {
     const SingleSegment = await SegmentWheelModel.find({ text: paramsText });
     // console.log(SingleWorkOut);
     if (!SingleSegment) {
-      return res.status(400).json({ error: "No such segment" });
+      return res.status(404).json({ error: "No such segment" });
     }
     res
       .status(200)
@@ -49,7 +49,7 @@ module.exports.single_get_segment = async (req, res) => {
     const SingleSegment = await SegmentWheelModel.find({ text: paramsText });
     // console.log(SingleWorkOut);
     if (!SingleSegment) {
-      return res.status(400).json({ error: "No such segment" });
+      return res.status(404).json({ error: "No such segment" });
     }
     res.status(200).json({ success: true, SingleSegment });
   } catch (err) {
