@@ -298,7 +298,7 @@ button.spin_button {
     border: 5px solid #1ea62c !important;
     text-align: center;
     font-size: 52px !important;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-weight: 500;
 
   }
