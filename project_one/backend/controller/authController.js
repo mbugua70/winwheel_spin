@@ -53,7 +53,7 @@ module.exports.single_get_segment = async (req, res) => {
     }
     res.status(200).json({ success: true, SingleSegment });
   } catch (err) {
-    console.log(err);
+
     res.status(400).json({ error: err.message });
   }
 };

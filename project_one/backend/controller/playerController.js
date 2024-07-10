@@ -31,6 +31,11 @@ module.exports.playerForm_post = async (req, res) => {
       res.status(200).json({ success: true, id: player_id._id });
     }
   } catch (err) {
+     if (err.code === 11000) {
+       return res
+         .status(400)
+         .json({ error: "The player has already participated" });
+     }
     const error = handleErrors(err);
     res.status(400).json({ error });
   }
@@ -57,7 +62,7 @@ module.exports.player_gift_update = async (req, res) => {
 
     res.status(204).json({ success: true, giftUpdated });
   } catch (err) {
-    console.log(err);
+
     res.status(400).json({ error: err.message });
   }
 };

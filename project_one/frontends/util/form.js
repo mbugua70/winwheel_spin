@@ -4,6 +4,7 @@ const wheelBuutonEl = document.getElementById("wheelBuuton");
 const form = document.getElementById("form");
 const iconsError = document.getElementById("icons-error");
 const inputs = document.querySelectorAll(".input");
+const canvasContainer = document.getElementById("canvasContainer");
 
 var userIDOne;
 
@@ -31,8 +32,13 @@ const handleSubmit = async (data) => {
 
     const dataID = await res.json();
     console.log(dataID);
-    if(dataID.error){
-      appNotifier(dataID.error.player_email)
+    if (dataID.error) {
+      if (dataID.error === "The player has already participated") {
+        appNotifier("The player has already participated");
+        console.log("hello");
+      } else {
+        appNotifier(dataID.error.player_email);
+      }
     }
 
     if (res.ok) {
@@ -95,10 +101,16 @@ const arraySegments = async () => {
     innerRadius: 75,
     textAlignment: "center",
     textFontSize: 16,
-    lineWidth: 6,
-    pointerAngle: 0, // Remember to specify if not default of 0 degrees.
+    lineWidth: 1,
+    pointerAngle: 0,
     responsive: true,
     segments: items,
+    pins: {
+      number: 16, // Number of pins
+      outerRadius: 6,
+      responsive: true, // Pins will be responsive
+      margin: -5, // Adjust this margin to position pins inside the border
+    },
     animation: {
       type: "spinToStop",
       duration: 10,
@@ -261,5 +273,70 @@ function appNotifier(message) {
     icon: "warning",
   });
 }
+
+const containerWidth = canvasContainer.offsetWidth;
+const containerHeight = canvasContainer.offsetHeight;
+
+if (containerWidth < 1080 && containerHeight < 1920) {
+  const containerWidth = canvasContainer.offsetWidth - 20;
+  const containerHeight = canvasContainer.offsetHeight - 100;
+  const radius = containerWidth / 2 - 10;
+
+  // Adjust for desired distance from the edge
+  const leftOffset = 60;
+  const topOffset = 25;
+
+  for (let i = 0; i < 16; i++) {
+    const pin = document.createElement("div");
+    pin.classList.add("pin");
+    const angle = (360 / 16) * i;
+
+    const x =
+      containerWidth / 2 +
+      radius * Math.cos((angle * Math.PI) / 180) -
+      leftOffset;
+    const y =
+      containerHeight / 2 +
+      radius * Math.sin((angle * Math.PI) / 180) -
+      topOffset;
+
+    pin.style.left = `${x}px`;
+    pin.style.top = `${y}px`;
+
+    canvasContainer.appendChild(pin);
+  }
+} else {
+  const containerWidth = canvasContainer.offsetWidth - 120;
+  const containerHeight = canvasContainer.offsetHeight - 200;
+  const radius = containerWidth / 2 - 2;
+
+  // Adjust for desired distance from the edge
+  const leftOffset = 65;
+  const topOffset = 25;
+
+  for (let i = 0; i < 16; i++) {
+    const pin = document.createElement("div");
+    pin.classList.add("pin");
+    const angle = (360 / 16) * i;
+
+    const x =
+      containerWidth / 2 +
+      radius * Math.cos((angle * Math.PI) / 180) -
+      leftOffset;
+    const y =
+      containerHeight / 2 +
+      radius * Math.sin((angle * Math.PI) / 180) -
+      topOffset;
+
+    pin.style.left = `${x}px`;
+    pin.style.top = `${y}px`;
+
+    canvasContainer.appendChild(pin);
+  }
+}
+
+
+
+
 
 arraySegments();

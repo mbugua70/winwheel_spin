@@ -79,11 +79,19 @@ body{
     width: 300px;
 } */
 
+
+
 #canvas {
     position: relative;
     z-index: 1;
     margin:0 auto !important;
 }
+
+
+
+
+
+
 
 #prizePointer {
     position: absolute;
@@ -95,6 +103,8 @@ body{
     height: 72px;
     z-index: 999;
 }
+
+
 
 .icons{
     font-size: 64px;
@@ -124,7 +134,7 @@ body{
 }
 
 button.spin_button {
-    background-color: #1ea62c;
+    background-color: #af0d24;
 }
 
 
@@ -140,8 +150,9 @@ button.spin_button {
   }
 
   .swal-button{
-    padding: 28px 48px;
-    font-size: 24px;
+    padding: 28px 68px;
+    font-size: 48px;
+    margin-top: 40px;
   }
 
   .swal-icon{
@@ -150,7 +161,7 @@ button.spin_button {
   }
 
   .swal-title{
-   font-size: 48px;
+   font-size: 60px;
   }
 
   body{
@@ -190,11 +201,12 @@ button.spin_button {
   }
 
   .spin_button{
+    font-size: 100px !important;
     left: 50%;
-    top: 1600px;
-    width: 460px;
-    height: 460px;
-    border:1px solid #1ea62c !important;
+    top: 1585px;
+    width: 495px;
+    height: 495px;
+    border:20px solid #efb604 !important;
 
   }
 
@@ -232,6 +244,33 @@ button.spin_button {
   }
 
   /* sweetAlert modal  */
+
+  /* canvas */
+
+  #canvasContainer{
+    position: absolute;
+    top: 47.8%; /* Move top edge to 50% of parent */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 100px solid #b62428;
+    ; /* rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* shadow effect */
+    width: 1710px;
+    height: 1710px;
+    border-radius: 50%;
+    z-index: 998;
+  }
+
+  /* pins */
+.pin {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(247, 221, 27);
+  border-radius: 50%;
+  z-index: 999;
+  box-shadow: 1px -2px 26px rgb(248, 244, 114)
+}
 
 }
 
@@ -312,5 +351,30 @@ button.spin_button {
     width: 70%;
   }
 
+
+  #canvasContainer{
+    position: absolute;
+    top: 48.8%; /* Move top edge to 50% of parent */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 60px solid #b62428;
+    ; /* rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* shadow effect */
+    width: 860px;
+    height: 860px;
+    border-radius: 50%;
+    z-index: 998;
+  }
+
+    /* pins */
+.pin {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: rgb(247, 221, 27);
+  border-radius: 50%;
+  z-index: 999;
+  box-shadow: 1px -2px 26px rgb(248, 244, 114)
+}
 
 }
