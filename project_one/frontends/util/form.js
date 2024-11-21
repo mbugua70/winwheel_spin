@@ -183,10 +183,11 @@ const handleGetSegments = async () => {
 
     if (res.ok) {
       const segments = await res.json();
-      console.log(segments);
+
       return segments;
     }
   } catch (error) {
+    appNotifier("Could not connect to the server!");
     return null;
   }
 };
