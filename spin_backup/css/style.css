@@ -62,7 +62,6 @@ body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 0px !important;
 }
 
 .spin_wheel{
@@ -175,14 +174,6 @@ body{
   .form_section{
       height: 230px;
       padding-top: 203px;
-      margin-bottom: 0px !important;
-  }
-
-  .form_section form {
-    display: flex;
-    flex-direction: column;
-    justify-content:  center;
-    align-items: center;
   }
 .containers{
   width: 2000px !important;
@@ -234,7 +225,7 @@ height: 230px;
 }
 
 .input-field input{
-  margin-top: 40px !important;
+  margin-block: 25px !important;
   padding: 60px 18px !important;
   border: 10px solid #1ea62c !important;
   text-align: center;
@@ -301,7 +292,7 @@ box-shadow: 1px -2px 26px rgb(248, 244, 114)
       height: 230px;
   }
 .containers{
-  margin-top: 15rem !important;
+  margin-top: 10rem !important;
 }
 
 .containers main{
@@ -311,7 +302,7 @@ box-shadow: 1px -2px 26px rgb(248, 244, 114)
 
 /* spin the wheel media query */
 .spin_wheel{
-  margin-top: 0px !important;
+  margin-top: 5rem !important;
   width: 1000px;
   height: 1000px;
 }

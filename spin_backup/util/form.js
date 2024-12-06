@@ -22,7 +22,7 @@ const handleSubmit = async (data) => {
   console.log(data);
 
   try {
-    const res = await fetch("http://localhost:3000/api/player", {
+    const res = await fetch("scripts/REG.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,29 +58,6 @@ const handleSubmit = async (data) => {
   }
 };
 
-const findGiftNumber = async (text) => {
-  try {
-    const res = await fetch(`http://localhost:3000/api/gift_number/${text}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (res.ok) {
-      const gift = await res.json();
-      get_number = gift.gift_number;
-      get_number--;
-    }
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch");
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 const arraySegments = async () => {
   const segments = await handleGetSegments();
   // console.log(segments.data);
@@ -105,12 +82,7 @@ const arraySegments = async () => {
     pointerAngle: 0,
     responsive: true,
     segments: items,
-    pins: {
-      number: 16, // Number of pins
-      outerRadius: 6,
-      responsive: true,
-      margin: -5, // Adjust  margin
-    },
+
     animation: {
       type: "spinToStop",
       duration: 10,
@@ -136,18 +108,15 @@ const arraySegments = async () => {
         const player_marchandize = "";
         const formData_one = new FormData(form);
         formData_one.append("player_marchandize", player_marchandize);
-        console.log(formData_one.get("player_email"));
 
-        const player_email = formData_one.get("player_email");
-        const player_phone = formData_one.get("player_phone");
-
-        if (!player_email || !player_phone) {
-          appNotifier("Please fill all the required fields");
+        // const player_email = formData_one.get("player_email");
+        const player_name = formData_one.get("player_name");
+        console.log(player_name);
+        if (!player_name) {
+          appNotifier("Please enter your name");
         } else {
           const playerData = {
-            player_email: formData_one.get("player_email"),
-            player_phone: formData_one.get("player_phone"),
-            player_marchandize: formData_one.get("player_marchandize"),
+            player_name: formData_one.get("player_name"),
           };
 
           const playerID = await handleSubmit(playerData);
@@ -157,7 +126,7 @@ const arraySegments = async () => {
           }
         }
       } else {
-        appNotifier("Please fill all the required fields");
+        appNotifier("Please enter your name");
       }
     },
     false
@@ -173,7 +142,7 @@ const playSound = () => {
 
 const handleGetSegments = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/segments", {
+    const res = await fetch("scripts/MERCH.php", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -196,19 +165,17 @@ const handleGetSegments = async () => {
 const handlePlayerUpdate = async (userID, text) => {
   const updatedValue = {
     player_marchandize: text,
+    userID: userID,
   };
 
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/playerupdate/${userID}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedValue),
-      }
-    );
+    const res = await fetch(`scripts/UPDATE.php/${text}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedValue),
+    });
 
     if (res.ok || res.status === 204) {
       console.log("player marchandize  updated successfully");
@@ -224,36 +191,28 @@ const handleGiftNumber = async () => {
   winningSegment = colourWheel.getIndicatedSegment();
   let text = winningSegment.text;
   console.log(text);
-  await findGiftNumber(text);
+  //await findGiftNumber(text);
   handlePlayerUpdate(userIDOne, text);
   const updatedValue = {
     gift_number: get_number,
   };
-
-  try {
-    const res = await fetch(`http://localhost:3000/api/segment/${text}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedValue),
-    });
-
-    if (res.ok || res.status === 204) {
-      console.log("Gift number updated successfully");
-    } else {
-      console.error("Failed to update gift number");
-    }
-  } catch (err) {}
 };
 
 const prizeAlert = () => {
   winningSegment = colourWheel.getIndicatedSegment();
   let text = winningSegment.text;
-  workingNotifier(`You have won ${text}`);
-  setTimeout(() => {
-    window.location.reload();
-  }, 3000);
+  console.log(text);
+  if (text == "Try Again") {
+    workingNotifier(`Sorry ${text} next time!`);
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+  } else {
+    workingNotifier(`You have won ${text}!`);
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+  }
 };
 
 // swal libraly
@@ -274,10 +233,25 @@ function appNotifier(message) {
   });
 }
 
+const containerWidth = canvasContainer.offsetWidth;
+const containerHeight = canvasContainer.offsetHeight;
 
+if (containerWidth < 1080 && containerHeight < 1920) {
+  const containerWidth = canvasContainer.offsetWidth - 20;
+  const containerHeight = canvasContainer.offsetHeight - 100;
+  const radius = containerWidth / 2 - 10;
 
+  // Adjust for desired distance from the edge
+  const leftOffset = 60;
+  const topOffset = 25;
+} else {
+  const containerWidth = canvasContainer.offsetWidth - 120;
+  const containerHeight = canvasContainer.offsetHeight - 200;
+  const radius = containerWidth / 2 - 2;
 
-
-
+  // Adjust for desired distance from the edge
+  const leftOffset = 65;
+  const topOffset = 25;
+}
 
 arraySegments();
