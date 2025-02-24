@@ -37,7 +37,7 @@ const handleSubmit = async (data) => {
         appNotifier("The player has already participated");
         console.log("hello");
       } else {
-        appNotifier(dataID.error.player_email);
+        // appNotifier(dataID.error.player_email);
       }
     }
 
@@ -101,15 +101,18 @@ const arraySegments = async () => {
     innerRadius: 75,
     textAlignment: "center",
     textFontSize: 16,
-    lineWidth: 1,
     pointerAngle: 0,
     responsive: true,
     segments: items,
     pins: {
       number: 16, // Number of pins
-      outerRadius: 6,
+      outerRadius: 12,
       responsive: true,
-      margin: -5, // Adjust  margin
+      margin: -30, // Adjust  margin
+      fillStyle: "red",
+      func: function (){
+
+      }
     },
     animation: {
       type: "spinToStop",
@@ -129,6 +132,23 @@ const arraySegments = async () => {
     // colourWheel.draw();
   });
 
+  let filterState = false;
+
+    // Function to simulate flickering effect on pins
+    function flickerPins() {
+      console.log(colourWheel, "winwheel")
+      setInterval(() => {
+        filterState = !filterState;
+        // let newOpacity = Math.random() * 0.45 + 0.45; // Random flicker effect
+        // colourWheel.pins.fillStyle = `rgba(255, 215, 0, ${newOpacity})`; // Adjust color opacity
+        colourWheel.pins.fillStyle = filterState ? "red" : "gold"; // Adjust color opacity
+        colourWheel.draw(); // Redraw wheel with updated pin color
+    }, 500);
+
+  }
+
+flickerPins();
+
   wheelBuutonEl.addEventListener(
     "click",
     async () => {
@@ -136,17 +156,17 @@ const arraySegments = async () => {
         const player_marchandize = "";
         const formData_one = new FormData(form);
         formData_one.append("player_marchandize", player_marchandize);
-        console.log(formData_one.get("player_email"));
 
-        const player_email = formData_one.get("player_email");
-        const player_phone = formData_one.get("player_phone");
 
-        if (!player_email || !player_phone) {
+        // const player_email = formData_one.get("player_name");
+        // const player_phone = formData_one.get("player_ph");
+
+        if (!player_name) {
           appNotifier("Please fill all the required fields");
         } else {
           const playerData = {
-            player_email: formData_one.get("player_email"),
-            player_phone: formData_one.get("player_phone"),
+            // player_email: formData_one.get("player_email"),
+            player_name: formData_one.get("player_name"),
             player_marchandize: formData_one.get("player_marchandize"),
           };
 
@@ -170,6 +190,9 @@ const playSound = () => {
   console.log(winsound);
   winsound.play();
 };
+
+
+
 
 const handleGetSegments = async () => {
   try {
@@ -256,6 +279,9 @@ const prizeAlert = () => {
   }, 3000);
 };
 
+
+
+
 // swal libraly
 const workingNotifier = (message) => {
   swal({
@@ -273,11 +299,6 @@ function appNotifier(message) {
     icon: "warning",
   });
 }
-
-
-
-
-
 
 
 arraySegments();
